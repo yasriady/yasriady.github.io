@@ -131,5 +131,131 @@
     "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
     "section": "Kesimpulan",
     "text": "Kesimpulan\n\nESP32 dapat digunakan sebagai node IoT sederhana\nHTTP POST mempermudah integrasi dengan server web\nJSON menjadi format pertukaran data yang efektif\nSistem monitoring real-time dapat dibangun dengan biaya rendah"
+  },
+  {
+    "objectID": "iotweb-dht22.html",
+    "href": "iotweb-dht22.html",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "",
+    "text": "Pada praktikum ini mahasiswa akan mempelajari implementasi dasar sistem Internet of Things (IoT) menggunakan:\n\nESP32\nSensor DHT22\nWiFi\nREST API berbasis HTTP/HTTPS\nJSON\n\nMahasiswa akan melakukan pembacaan data suhu dan kelembaban dari sensor DHT22, kemudian mengirimkan data tersebut ke server web menggunakan metode HTTP POST.\n\n\n\nSetelah menyelesaikan praktikum ini mahasiswa diharapkan mampu:\n\nMemahami konsep dasar Internet of Things.\nMenghubungkan ESP32 ke jaringan WiFi.\nMembaca data sensor DHT22.\nMengirim data ke Web API menggunakan HTTP POST.\nMemahami format data JSON pada sistem IoT.\nMelakukan simulasi IoT menggunakan Wokwi."
+  },
+  {
+    "objectID": "iotweb-dht22.html#deskripsi-praktikum",
+    "href": "iotweb-dht22.html#deskripsi-praktikum",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "",
+    "text": "Pada praktikum ini mahasiswa akan mempelajari implementasi dasar sistem Internet of Things (IoT) menggunakan:\n\nESP32\nSensor DHT22\nWiFi\nREST API berbasis HTTP/HTTPS\nJSON\n\nMahasiswa akan melakukan pembacaan data suhu dan kelembaban dari sensor DHT22, kemudian mengirimkan data tersebut ke server web menggunakan metode HTTP POST."
+  },
+  {
+    "objectID": "iotweb-dht22.html#capaian-pembelajaran",
+    "href": "iotweb-dht22.html#capaian-pembelajaran",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "",
+    "text": "Setelah menyelesaikan praktikum ini mahasiswa diharapkan mampu:\n\nMemahami konsep dasar Internet of Things.\nMenghubungkan ESP32 ke jaringan WiFi.\nMembaca data sensor DHT22.\nMengirim data ke Web API menggunakan HTTP POST.\nMemahami format data JSON pada sistem IoT.\nMelakukan simulasi IoT menggunakan Wokwi."
+  },
+  {
+    "objectID": "iotweb-dht22.html#internet-of-things-iot",
+    "href": "iotweb-dht22.html#internet-of-things-iot",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Internet of Things (IoT)",
+    "text": "Internet of Things (IoT)\nInternet of Things merupakan konsep dimana perangkat fisik dapat saling terhubung melalui jaringan internet untuk mengirim dan menerima data secara otomatis.\nContoh implementasi IoT:\n\nMonitoring suhu ruangan\nSmart home\nSmart city\nMonitoring lingkungan\nSistem pertanian pintar"
+  },
+  {
+    "objectID": "iotweb-dht22.html#esp32",
+    "href": "iotweb-dht22.html#esp32",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "ESP32",
+    "text": "ESP32\nESP32 adalah mikrokontroler yang memiliki fitur:\n\nWiFi\nBluetooth\nGPIO\nADC\nPWM\nDeep Sleep\n\nESP32 sangat populer dalam pengembangan IoT karena murah dan memiliki kemampuan jaringan yang baik."
+  },
+  {
+    "objectID": "iotweb-dht22.html#sensor-dht22",
+    "href": "iotweb-dht22.html#sensor-dht22",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Sensor DHT22",
+    "text": "Sensor DHT22\nSensor DHT22 digunakan untuk membaca:\n\nSuhu\nKelembaban udara\n\nKarakteristik DHT22:\n\n\n\nParameter\nNilai\n\n\n\n\nTegangan kerja\n3.3V – 5V\n\n\nRentang suhu\n-40°C s/d 80°C\n\n\nRentang kelembaban\n0% – 100%\n\n\nAkurasi suhu\n±0.5°C"
+  },
+  {
+    "objectID": "iotweb-dht22.html#http-post",
+    "href": "iotweb-dht22.html#http-post",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "HTTP POST",
+    "text": "HTTP POST\nHTTP POST digunakan untuk mengirim data dari perangkat IoT menuju server.\nPada praktikum ini data dikirim dalam format JSON.\nContoh:\n{\n  \"temperature\": 28.5,\n  \"humidity\": 70.2,\n  \"device_id\": \"esp32-wokwi-02\"\n}"
+  },
+  {
+    "objectID": "iotweb-dht22.html#perangkat-keras",
+    "href": "iotweb-dht22.html#perangkat-keras",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Perangkat Keras",
+    "text": "Perangkat Keras\n\n\n\nNo\nNama Komponen\n\n\n\n\n1\nESP32 DevKit\n\n\n2\nSensor DHT22\n\n\n3\nKabel Jumper\n\n\n4\nBreadboard"
+  },
+  {
+    "objectID": "iotweb-dht22.html#perangkat-lunak",
+    "href": "iotweb-dht22.html#perangkat-lunak",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Perangkat Lunak",
+    "text": "Perangkat Lunak\n\n\n\nNo\nSoftware\n\n\n\n\n1\nArduino IDE\n\n\n2\nWokwi Simulator\n\n\n3\nBrowser Web"
+  },
+  {
+    "objectID": "iotweb-dht22.html#koneksi-dht22-ke-esp32",
+    "href": "iotweb-dht22.html#koneksi-dht22-ke-esp32",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Koneksi DHT22 ke ESP32",
+    "text": "Koneksi DHT22 ke ESP32\n\n\n\nPin DHT22\nPin ESP32\n\n\n\n\nVCC\n3.3V\n\n\nGND\nGND\n\n\nDATA\nGPIO 15\n\n\n\nTambahkan resistor pull-up 10K antara:\n\nDATA ↔︎ VCC"
+  },
+  {
+    "objectID": "iotweb-dht22.html#import-library",
+    "href": "iotweb-dht22.html#import-library",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Import Library",
+    "text": "Import Library\n#include &lt;WiFi.h&gt;\n#include &lt;HTTPClient.h&gt;\n#include &lt;DHT.h&gt;\nDigunakan untuk:\n\nkoneksi WiFi\nkomunikasi HTTP\npembacaan sensor DHT22"
+  },
+  {
+    "objectID": "iotweb-dht22.html#inisialisasi-dht22",
+    "href": "iotweb-dht22.html#inisialisasi-dht22",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Inisialisasi DHT22",
+    "text": "Inisialisasi DHT22\n#define DHTPIN 15\n#define DHTTYPE DHT22\nMenentukan pin data sensor dan tipe sensor."
+  },
+  {
+    "objectID": "iotweb-dht22.html#membaca-sensor",
+    "href": "iotweb-dht22.html#membaca-sensor",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Membaca Sensor",
+    "text": "Membaca Sensor\nfloat temp = dht.readTemperature();\nfloat hum  = dht.readHumidity();\nDigunakan untuk membaca suhu dan kelembaban."
+  },
+  {
+    "objectID": "iotweb-dht22.html#membuat-json",
+    "href": "iotweb-dht22.html#membuat-json",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Membuat JSON",
+    "text": "Membuat JSON\nString json =\n\"{\"\n\"\\\"temperature\\\":\" + String(temp, 2) + \",\"\n\"\\\"humidity\\\":\" + String(hum, 2) + \",\"\n\"\\\"device_id\\\":\\\"\" + String(DEVICE_ID) + \"\\\"\"\n\"}\";\nDigunakan untuk membentuk data JSON sebelum dikirim ke server."
+  },
+  {
+    "objectID": "iotweb-dht22.html#http-post-1",
+    "href": "iotweb-dht22.html#http-post-1",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "HTTP POST",
+    "text": "HTTP POST\nint httpCode = http.POST(json);\nDigunakan untuk mengirim data ke server."
+  },
+  {
+    "objectID": "iotweb-dht22.html#langkah-langkah",
+    "href": "iotweb-dht22.html#langkah-langkah",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Langkah-langkah",
+    "text": "Langkah-langkah\n\nBuka https://wokwi.com\nBuat project ESP32 baru\nTambahkan sensor DHT22\nHubungkan pin sesuai wiring\nUpload source code\nJalankan simulasi"
+  },
+  {
+    "objectID": "iotweb-dht22.html#output-serial-monitor",
+    "href": "iotweb-dht22.html#output-serial-monitor",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Output Serial Monitor",
+    "text": "Output Serial Monitor\nWiFi Connected\nSuhu: 27.40 °C\nKelembaban: 68.20 %\nHTTP Code: 200\nData berhasil disimpan"
+  },
+  {
+    "objectID": "iotweb-dht22.html#analisis",
+    "href": "iotweb-dht22.html#analisis",
+    "title": "Modul Praktikum Teknologi Internet of Things",
+    "section": "Analisis",
+    "text": "Analisis\nHasil menunjukkan bahwa:\n\nESP32 berhasil terhubung ke WiFi\nSensor DHT22 berhasil dibaca\nData berhasil dikirim ke server\nServer memberikan respon HTTP 200"
   }
 ]
