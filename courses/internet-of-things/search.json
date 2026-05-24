@@ -257,5 +257,12 @@
     "title": "Modul Praktikum Teknologi Internet of Things",
     "section": "Analisis",
     "text": "Analisis\nHasil menunjukkan bahwa:\n\nESP32 berhasil terhubung ke WiFi\nSensor DHT22 berhasil dibaca\nData berhasil dikirim ke server\nServer memberikan respon HTTP 200"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Notifikasi NodeMCU menggunakn WhatsApp",
+    "section": "",
+    "text": "index"
   }
 ]

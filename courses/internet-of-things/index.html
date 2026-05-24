@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/tabby.min.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Dedy Yasriady, S.Kom., M.Kom.">
 
-<title>Notifikasi NodeMCU menggunakn WhatsApp – Website Saya</title>
+<title>Notifikasi NodeMCU menggunakn WhatsApp – Internet of Things</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -115,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -123,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Website Saya</span>
+    <span class="navbar-title">Internet of Things</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -147,34 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#tujuan-pembelajaran" id="toc-tujuan-pembelajaran" class="nav-link active" data-scroll-target="#tujuan-pembelajaran">🎯 Tujuan Pembelajaran</a></li>
-  <li><a href="#alat-dan-bahan" id="toc-alat-dan-bahan" class="nav-link" data-scroll-target="#alat-dan-bahan">🧰 Alat dan Bahan</a></li>
-  <li><a href="#konsep-sistem" id="toc-konsep-sistem" class="nav-link" data-scroll-target="#konsep-sistem">🧠 Konsep Sistem</a></li>
-  <li><a href="#rangkaian-sederhana" id="toc-rangkaian-sederhana" class="nav-link" data-scroll-target="#rangkaian-sederhana">🔌 Rangkaian Sederhana</a></li>
-  <li><a href="#persiapan" id="toc-persiapan" class="nav-link" data-scroll-target="#persiapan">🔧 Persiapan</a>
-  <ul class="collapse">
-  <li><a href="#koneksi-wifi" id="toc-koneksi-wifi" class="nav-link" data-scroll-target="#koneksi-wifi">1. Koneksi WiFi</a></li>
-  <li><a href="#konfigurasi-sendora" id="toc-konfigurasi-sendora" class="nav-link" data-scroll-target="#konfigurasi-sendora">2. Konfigurasi Sendora</a></li>
-  </ul></li>
-  <li><a href="#program-nodemcu" id="toc-program-nodemcu" class="nav-link" data-scroll-target="#program-nodemcu">💻 Program NodeMCU</a></li>
-  <li><a href="#penjelasan-program" id="toc-penjelasan-program" class="nav-link" data-scroll-target="#penjelasan-program">🔍 Penjelasan Program</a>
-  <ul class="collapse">
-  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">Library</a></li>
-  <li><a href="#logika-program" id="toc-logika-program" class="nav-link" data-scroll-target="#logika-program">Logika Program</a></li>
-  </ul></li>
-  <li><a href="#pengujian" id="toc-pengujian" class="nav-link" data-scroll-target="#pengujian">🧪 Pengujian</a></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">⚠️ Troubleshooting</a></li>
-  <li><a href="#tugas-mahasiswa" id="toc-tugas-mahasiswa" class="nav-link" data-scroll-target="#tugas-mahasiswa">🎓 Tugas Mahasiswa</a></li>
-  <li><a href="#kesimpulan" id="toc-kesimpulan" class="nav-link" data-scroll-target="#kesimpulan">💡 Kesimpulan</a></li>
-  <li><a href="#pengembangan-lanjutan" id="toc-pengembangan-lanjutan" class="nav-link" data-scroll-target="#pengembangan-lanjutan">🚀 Pengembangan Lanjutan</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="index.pptx"><i class="bi bi-file-slides"></i>Powerpoint</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -203,211 +136,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="tujuan-pembelajaran" class="level1">
-<h1>🎯 Tujuan Pembelajaran</h1>
-<p>Setelah mengikuti praktikum ini, mahasiswa diharapkan mampu:</p>
-<ul>
-<li>Menghubungkan NodeMCU ke jaringan WiFi</li>
-<li>Memahami konsep input digital (GPIO)</li>
-<li>Mengirim data ke server menggunakan HTTP POST</li>
-<li>Mengirim notifikasi WhatsApp menggunakan API (Sendora)</li>
-<li>Mengimplementasikan sistem IoT sederhana berbasis trigger</li>
-</ul>
-</section>
-<section id="alat-dan-bahan" class="level1">
-<h1>🧰 Alat dan Bahan</h1>
-<ul>
-<li>NodeMCU (ESP8266)</li>
-<li>Kabel USB</li>
-<li>Breadboard</li>
-<li>Push button</li>
-<li>Resistor (opsional)</li>
-<li>Koneksi WiFi</li>
-<li>Akun Sendora (WhatsApp API)</li>
-</ul>
-</section>
-<section id="konsep-sistem" class="level1">
-<h1>🧠 Konsep Sistem</h1>
-<p>Sistem ini bekerja dengan konsep event-driven:</p>
-<ul>
-<li>Tombol ditekan → GPIO bernilai LOW</li>
-<li>NodeMCU membaca kondisi tersebut</li>
-<li>NodeMCU mengirim request ke API WhatsApp</li>
-<li>Pesan diterima oleh pengguna</li>
-</ul>
-</section>
-<section id="rangkaian-sederhana" class="level1">
-<h1>🔌 Rangkaian Sederhana</h1>
-<ul>
-<li>Salah satu kaki tombol → GPIO4 (D2)</li>
-<li>Kaki lainnya → GND</li>
-<li>Gunakan mode INPUT_PULLUP</li>
-</ul>
-</section>
-<section id="persiapan" class="level1">
-<h1>🔧 Persiapan</h1>
-<section id="koneksi-wifi" class="level2">
-<h2 class="anchored" data-anchor-id="koneksi-wifi">1. Koneksi WiFi</h2>
-<p>Siapkan:</p>
-<ul>
-<li>SSID</li>
-<li>Password</li>
-</ul>
-</section>
-<section id="konfigurasi-sendora" class="level2">
-<h2 class="anchored" data-anchor-id="konfigurasi-sendora">2. Konfigurasi Sendora</h2>
-<p>Siapkan:</p>
-<ul>
-<li>API Key</li>
-<li>Device ID</li>
-<li>Nomor WhatsApp tujuan</li>
-</ul>
-</section>
-</section>
-<section id="program-nodemcu" class="level1">
-<h1>💻 Program NodeMCU</h1>
-<div class="code-copy-outer-scaffold"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ESP8266WiFi.h&gt;</span></span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ESP8266HTTPClient.h&gt;</span></span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;WiFiClientSecure.h&gt;</span></span>
-<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="co">// Konfigurasi WiFi</span></span>
-<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"NAMA_WIFI"</span><span class="op">;</span></span>
-<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"PASSWORD_WIFI"</span><span class="op">;</span></span>
-<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a><span class="co">// Konfigurasi Sendora</span></span>
-<span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a>String sendora_url <span class="op">=</span> <span class="st">"https://sendora.web.id/api/v1/messages/send"</span><span class="op">;</span></span>
-<span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a>String api_key <span class="op">=</span> <span class="st">"API_KEY_ANDA"</span><span class="op">;</span></span>
-<span id="cb1-12"><a aria-hidden="true" tabindex="-1"></a>String device_id <span class="op">=</span> <span class="st">"DEVICE_ID_ANDA"</span><span class="op">;</span></span>
-<span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a>String no_tujuan <span class="op">=</span> <span class="st">"628xxxxxxxxxx"</span><span class="op">;</span></span>
-<span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUTTON_PIN </span>D2</span>
-<span id="cb1-16"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a aria-hidden="true" tabindex="-1"></a><span class="co">// =========================</span></span>
-<span id="cb1-18"><a aria-hidden="true" tabindex="-1"></a><span class="co">// FUNCTION KIRIM WHATSAPP</span></span>
-<span id="cb1-19"><a aria-hidden="true" tabindex="-1"></a><span class="co">// =========================</span></span>
-<span id="cb1-20"><a aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> kirimWhatsApp<span class="op">(</span>String pesan<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-21"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">==</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-22"><a aria-hidden="true" tabindex="-1"></a>    WiFiClient client<span class="op">;</span></span>
-<span id="cb1-23"><a aria-hidden="true" tabindex="-1"></a>    HTTPClient http<span class="op">;</span></span>
-<span id="cb1-24"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a aria-hidden="true" tabindex="-1"></a>    http<span class="op">.</span>begin<span class="op">(</span>client<span class="op">,</span> sendora_url<span class="op">);</span></span>
-<span id="cb1-26"><a aria-hidden="true" tabindex="-1"></a>    http<span class="op">.</span>addHeader<span class="op">(</span><span class="st">"Content-Type"</span><span class="op">,</span> <span class="st">"application/json"</span><span class="op">);</span></span>
-<span id="cb1-27"><a aria-hidden="true" tabindex="-1"></a>    http<span class="op">.</span>addHeader<span class="op">(</span><span class="st">"Authorization"</span><span class="op">,</span> api_key<span class="op">);</span></span>
-<span id="cb1-28"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a aria-hidden="true" tabindex="-1"></a>    String payload <span class="op">=</span> <span class="st">"{"</span><span class="op">;</span></span>
-<span id="cb1-30"><a aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">"</span><span class="sc">\"</span><span class="st">device_id</span><span class="sc">\"</span><span class="st">:</span><span class="sc">\"</span><span class="st">"</span> <span class="op">+</span> device_id <span class="op">+</span> <span class="st">"</span><span class="sc">\"</span><span class="st">,"</span><span class="op">;</span></span>
-<span id="cb1-31"><a aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">"</span><span class="sc">\"</span><span class="st">number</span><span class="sc">\"</span><span class="st">:</span><span class="sc">\"</span><span class="st">"</span> <span class="op">+</span> no_tujuan <span class="op">+</span> <span class="st">"</span><span class="sc">\"</span><span class="st">,"</span><span class="op">;</span></span>
-<span id="cb1-32"><a aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">"</span><span class="sc">\"</span><span class="st">message</span><span class="sc">\"</span><span class="st">:</span><span class="sc">\"</span><span class="st">"</span> <span class="op">+</span> pesan <span class="op">+</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span><span class="op">;</span></span>
-<span id="cb1-33"><a aria-hidden="true" tabindex="-1"></a>    payload <span class="op">+=</span> <span class="st">"}"</span><span class="op">;</span></span>
-<span id="cb1-34"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> httpResponseCode <span class="op">=</span> http<span class="op">.</span>POST<span class="op">(</span>payload<span class="op">);</span></span>
-<span id="cb1-36"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Response: "</span><span class="op">);</span></span>
-<span id="cb1-38"><a aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>httpResponseCode<span class="op">);</span></span>
-<span id="cb1-39"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a aria-hidden="true" tabindex="-1"></a>    http<span class="op">.</span>end<span class="op">();</span></span>
-<span id="cb1-41"><a aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-42"><a aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"WiFi tidak terhubung!"</span><span class="op">);</span></span>
-<span id="cb1-43"><a aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-44"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-45"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-47"><a aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
-<span id="cb1-48"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a aria-hidden="true" tabindex="-1"></a>  pinMode<span class="op">(</span>BUTTON_PIN<span class="op">,</span> INPUT_PULLUP<span class="op">);</span></span>
-<span id="cb1-50"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a aria-hidden="true" tabindex="-1"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
-<span id="cb1-52"><a aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Menghubungkan ke WiFi"</span><span class="op">);</span></span>
-<span id="cb1-53"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-55"><a aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
-<span id="cb1-56"><a aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
-<span id="cb1-57"><a aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-58"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a aria-hidden="true" tabindex="-1"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"</span></span>
-<span id="cb1-60"><a aria-hidden="true" tabindex="-1"></a>WiFi terhubung<span class="op">!</span><span class="st">");</span></span>
-<span id="cb1-61"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-62"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-64"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>digitalRead<span class="op">(</span>BUTTON_PIN<span class="op">)</span> <span class="op">==</span> LOW<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-65"><a aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Tombol ditekan! Mengirim WhatsApp..."</span><span class="op">);</span></span>
-<span id="cb1-66"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a aria-hidden="true" tabindex="-1"></a>    kirimWhatsApp<span class="op">(</span><span class="st">"Halo! Ini notifikasi dari NodeMCU"</span><span class="op">);</span></span>
-<span id="cb1-68"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">3000</span><span class="op">);</span></span>
-<span id="cb1-70"><a aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-71"><a aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="penjelasan-program" class="level1">
-<h1>🔍 Penjelasan Program</h1>
-<section id="library" class="level2">
-<h2 class="anchored" data-anchor-id="library">Library</h2>
-<ul>
-<li>ESP8266WiFi → koneksi WiFi</li>
-<li>HTTPClient → komunikasi HTTP</li>
-<li>WiFiClient → koneksi jaringan</li>
-</ul>
-</section>
-<section id="logika-program" class="level2">
-<h2 class="anchored" data-anchor-id="logika-program">Logika Program</h2>
-<ol type="1">
-<li>NodeMCU terkoneksi ke WiFi</li>
-<li>Tombol ditekan (LOW)</li>
-<li>NodeMCU mengirim HTTP POST</li>
-<li>API Sendora memproses</li>
-<li>Pesan WhatsApp terkirim</li>
-</ol>
-</section>
-</section>
-<section id="pengujian" class="level1">
-<h1>🧪 Pengujian</h1>
-<p>Langkah:</p>
-<ol type="1">
-<li>Upload program ke NodeMCU</li>
-<li>Buka Serial Monitor</li>
-<li>Tekan tombol</li>
-<li>Pastikan muncul response</li>
-<li>Cek WhatsApp tujuan</li>
-</ol>
-</section>
-<section id="troubleshooting" class="level1">
-<h1>⚠️ Troubleshooting</h1>
-<ul>
-<li>WiFi tidak terhubung → cek SSID &amp; password</li>
-<li>Tidak ada respon → cek API Key</li>
-<li>Pesan tidak terkirim → cek device_id &amp; nomor</li>
-<li>Serial error → cek baudrate (115200)</li>
-</ul>
-</section>
-<section id="tugas-mahasiswa" class="level1">
-<h1>🎓 Tugas Mahasiswa</h1>
-<ol type="1">
-<li>Modifikasi isi pesan WhatsApp</li>
-<li>Tambahkan delay berbeda</li>
-<li>Tambahkan LED indikator saat tombol ditekan</li>
-</ol>
-</section>
-<section id="kesimpulan" class="level1">
-<h1>💡 Kesimpulan</h1>
-<p>Praktikum ini menunjukkan implementasi sederhana IoT:</p>
-<ul>
-<li>Input (tombol)</li>
-<li>Proses (NodeMCU)</li>
-<li>Output (WhatsApp)</li>
-</ul>
-<p>Mahasiswa diharapkan memahami dasar integrasi hardware dan API.</p>
-</section>
-<section id="pengembangan-lanjutan" class="level1">
-<h1>🚀 Pengembangan Lanjutan</h1>
-<ul>
-<li>Tambah sensor (suhu, gerak)</li>
-<li>Integrasi Telegram</li>
-<li>Dashboard monitoring</li>
-<li>Penyimpanan data cloud</li>
-</ul>
+<p>index</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
