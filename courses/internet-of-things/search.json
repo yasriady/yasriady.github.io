@@ -1,0 +1,135 @@
+[
+  {
+    "objectID": "iotweb-mysql.html",
+    "href": "iotweb-mysql.html",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Dosen Pengampu: Dedy Yasriady\nMata Kuliah: Internet of Things (IoT)\n\n\n\n\nMahasiswa mampu:\n\nMemahami konsep IoT berbasis ESP32\nMenghubungkan ESP32 ke jaringan WiFi\nMengirim data sensor ke server menggunakan HTTP POST\nMemahami format JSON pada komunikasi IoT\nMengintegrasikan ESP32 dengan REST API\n\n\n\n\n\n\n\n\n\n\ngraph LR\n    A[Sensor Temperatur] --&gt; B[ESP32]\n    B --&gt; C[WiFi]\n    C --&gt; D[REST API Server]\n    D --&gt; E[Database]\n\n\n\n\n\n\n\n\n\n\n\n\n\nKomponen\nFungsi\n\n\n\n\nESP32\nMikrokontroler utama\n\n\nSensor Temperatur\nMembaca suhu lingkungan\n\n\nWiFi\nMedia komunikasi jaringan\n\n\nREST API\nEndpoint penerima data\n\n\nDatabase\nPenyimpanan data monitoring\n\n\n\n\n\n\n\n\nESP32 terkoneksi ke WiFi\nSensor membaca temperatur\nData dikonversi ke format JSON\nESP32 mengirim data menggunakan HTTP POST\nServer menerima dan menyimpan data\nProses dilakukan setiap 3 detik\n\n\n\n\n\nProgram terdiri dari:\n\nKonfigurasi WiFi\nKonfigurasi API\nFungsi pembacaan temperatur\nHTTP POST ke server\nLoop pengiriman data berkala\n\n\n\n\n\nconst char* WIFI_SSID     = \"Wokwi-GUEST\";\nconst char* WIFI_PASSWORD = \"\";\nFungsi:\n\nMenghubungkan ESP32 ke jaringan internet\nMenjadi jalur komunikasi ke server IoT\n\n\n\n\n\nconst char* API_URL   = \"https://iotweb.apache.web.id/api/save-data\";\nconst char* API_TOKEN = \"YOUR_TOKEN\";\nFungsi:\n\nMenentukan alamat server tujuan\nToken digunakan untuk autentikasi\n\n\n\n\n\nfloat readTemperature() {\n  int raw = analogRead(TEMP_PIN);\n\n  float voltage = raw * 3.3 / 4095.0;\n  float tempC = (voltage - 0.5) * 100.0;\n\n  return tempC;\n}\n\n\n\n\nPersamaan yang digunakan:\n[ \\[\nVoltage = ADC \\times \\frac{3.3}{4095}\n\\]]\n[ Temperature = (Voltage - 0.5) ]\n\n\n\n\n{\n  \"temperature\": 27.5,\n  \"device_id\": \"esp32-wokwi-01\"\n}\nKeuntungan JSON:\n\nRingan\nMudah diproses\nStandar komunikasi web modern\n\n\n\n\n\nint httpCode = http.POST(json);\nHTTP POST digunakan untuk:\n\nMengirim data ke server\nMenyisipkan data baru ke database\nMendukung komunikasi REST API\n\n\n\n\n\ndelay(3000);\nArtinya:\n\nData dikirim setiap 3 detik\nSistem melakukan monitoring periodik\nCocok untuk pemantauan real-time sederhana\n\n\n#include &lt;WiFi.h&gt;\n#include &lt;WiFiClientSecure.h&gt;\n#include &lt;HTTPClient.h&gt;\n\n// ================= CONFIG =================\nconst char* WIFI_SSID     = \"Wokwi-GUEST\";\nconst char* WIFI_PASSWORD = \"\";\n\nconst char* API_URL   = \"https://iotweb.apache.web.id/api/save-data\";\nconst char* API_TOKEN = \"f62504400873ef044d68126c13423223\";\n\nconst char* DEVICE_ID = \"esp32-wokwi-02\";\n\nconst int TEMP_PIN = 34;\n// ==========================================\n\nvoid setup() {\n  Serial.begin(115200);\n\n  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);\n\n  Serial.print(\"Menghubungkan WiFi\");\n\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n\n  Serial.println();\n  Serial.println(\"WiFi Connected\");\n}\n\nfloat readTemperature() {\n  int raw = analogRead(TEMP_PIN);\n\n  float voltage = raw * 3.3 / 4095.0;\n  float tempC = (voltage - 0.5) * 100.0;\n\n  // fallback simulasi Wokwi\n  if (tempC &lt; -40 || tempC &gt; 85) {\n    tempC = 25 + random(0, 100) / 10.0;\n  }\n\n  return tempC;\n}\n\nvoid loop() {\n\n  float temp = readTemperature();\n\n  Serial.print(\"Suhu: \");\n  Serial.println(temp);\n\n  String json =\n    \"{\\\"temperature\\\":\" +\n    String(temp, 2) +\n    \",\\\"device_id\\\":\\\"\" +\n    DEVICE_ID +\n    \"\\\"}\";\n\n  WiFiClientSecure client;\n  client.setInsecure();\n\n  HTTPClient http;\n\n  http.begin(client, API_URL);\n\n  http.addHeader(\"Content-Type\", \"application/json\");\n  http.addHeader(\"Authorization\", String(\"Bearer \") + API_TOKEN);\n\n  int httpCode = http.POST(json);\n\n  Serial.print(\"HTTP Code: \");\n  Serial.println(httpCode);\n\n  if (httpCode &gt; 0) {\n    Serial.println(http.getString());\n  }\n\n  http.end();\n\n  delay(3000);\n}\n\n\n\n\nWiFi Connected\nSuhu: 26.45\nHTTP Code: 201\nInterpretasi:\n\nWiFi berhasil terkoneksi\nTemperatur berhasil dibaca\nData berhasil diterima server\n\n\n\n\n\n\nImplementasi sederhana\nBiaya murah\nMudah dikembangkan\nMendukung monitoring real-time\nDapat diintegrasikan dengan dashboard web\n\n\n\n\n\n\nBergantung pada koneksi internet\nBelum menggunakan enkripsi sertifikat valid\nBelum memiliki mekanisme retry kompleks\nBelum hemat daya\n\n\n\n\n\nBeberapa pengembangan yang dapat dilakukan:\n\nIntegrasi LoRa\nDeep Sleep ESP32\nDashboard monitoring\nPenyimpanan cloud\nMQTT Protocol\nMulti sensor\nAlarm suhu otomatis\n\n\n\n\n\n\nESP32 dapat digunakan sebagai node IoT sederhana\nHTTP POST mempermudah integrasi dengan server web\nJSON menjadi format pertukaran data yang efektif\nSistem monitoring real-time dapat dibangun dengan biaya rendah"
+  },
+  {
+    "objectID": "iotweb-mysql.html#monitoring-temperatur-esp32-ke-rest-api",
+    "href": "iotweb-mysql.html#monitoring-temperatur-esp32-ke-rest-api",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Dosen Pengampu: Dedy Yasriady\nMata Kuliah: Internet of Things (IoT)"
+  },
+  {
+    "objectID": "iotweb-mysql.html#tujuan-praktikum",
+    "href": "iotweb-mysql.html#tujuan-praktikum",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Mahasiswa mampu:\n\nMemahami konsep IoT berbasis ESP32\nMenghubungkan ESP32 ke jaringan WiFi\nMengirim data sensor ke server menggunakan HTTP POST\nMemahami format JSON pada komunikasi IoT\nMengintegrasikan ESP32 dengan REST API"
+  },
+  {
+    "objectID": "iotweb-mysql.html#arsitektur-sistem",
+    "href": "iotweb-mysql.html#arsitektur-sistem",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "graph LR\n    A[Sensor Temperatur] --&gt; B[ESP32]\n    B --&gt; C[WiFi]\n    C --&gt; D[REST API Server]\n    D --&gt; E[Database]"
+  },
+  {
+    "objectID": "iotweb-mysql.html#komponen-sistem",
+    "href": "iotweb-mysql.html#komponen-sistem",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Komponen\nFungsi\n\n\n\n\nESP32\nMikrokontroler utama\n\n\nSensor Temperatur\nMembaca suhu lingkungan\n\n\nWiFi\nMedia komunikasi jaringan\n\n\nREST API\nEndpoint penerima data\n\n\nDatabase\nPenyimpanan data monitoring"
+  },
+  {
+    "objectID": "iotweb-mysql.html#alur-kerja-sistem",
+    "href": "iotweb-mysql.html#alur-kerja-sistem",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "ESP32 terkoneksi ke WiFi\nSensor membaca temperatur\nData dikonversi ke format JSON\nESP32 mengirim data menggunakan HTTP POST\nServer menerima dan menyimpan data\nProses dilakukan setiap 3 detik"
+  },
+  {
+    "objectID": "iotweb-mysql.html#struktur-program",
+    "href": "iotweb-mysql.html#struktur-program",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Program terdiri dari:\n\nKonfigurasi WiFi\nKonfigurasi API\nFungsi pembacaan temperatur\nHTTP POST ke server\nLoop pengiriman data berkala"
+  },
+  {
+    "objectID": "iotweb-mysql.html#konfigurasi-wifi",
+    "href": "iotweb-mysql.html#konfigurasi-wifi",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "const char* WIFI_SSID     = \"Wokwi-GUEST\";\nconst char* WIFI_PASSWORD = \"\";\nFungsi:\n\nMenghubungkan ESP32 ke jaringan internet\nMenjadi jalur komunikasi ke server IoT"
+  },
+  {
+    "objectID": "iotweb-mysql.html#konfigurasi-api",
+    "href": "iotweb-mysql.html#konfigurasi-api",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "const char* API_URL   = \"https://iotweb.apache.web.id/api/save-data\";\nconst char* API_TOKEN = \"YOUR_TOKEN\";\nFungsi:\n\nMenentukan alamat server tujuan\nToken digunakan untuk autentikasi"
+  },
+  {
+    "objectID": "iotweb-mysql.html#pembacaan-sensor-temperatur",
+    "href": "iotweb-mysql.html#pembacaan-sensor-temperatur",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "float readTemperature() {\n  int raw = analogRead(TEMP_PIN);\n\n  float voltage = raw * 3.3 / 4095.0;\n  float tempC = (voltage - 0.5) * 100.0;\n\n  return tempC;\n}"
+  },
+  {
+    "objectID": "iotweb-mysql.html#konversi-adc-ke-temperatur",
+    "href": "iotweb-mysql.html#konversi-adc-ke-temperatur",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Persamaan yang digunakan:\n[ \\[\nVoltage = ADC \\times \\frac{3.3}{4095}\n\\]]\n[ Temperature = (Voltage - 0.5) ]"
+  },
+  {
+    "objectID": "iotweb-mysql.html#format-json",
+    "href": "iotweb-mysql.html#format-json",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "{\n  \"temperature\": 27.5,\n  \"device_id\": \"esp32-wokwi-01\"\n}\nKeuntungan JSON:\n\nRingan\nMudah diproses\nStandar komunikasi web modern"
+  },
+  {
+    "objectID": "iotweb-mysql.html#http-post",
+    "href": "iotweb-mysql.html#http-post",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "int httpCode = http.POST(json);\nHTTP POST digunakan untuk:\n\nMengirim data ke server\nMenyisipkan data baru ke database\nMendukung komunikasi REST API"
+  },
+  {
+    "objectID": "iotweb-mysql.html#interval-pengiriman-data",
+    "href": "iotweb-mysql.html#interval-pengiriman-data",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "delay(3000);\nArtinya:\n\nData dikirim setiap 3 detik\nSistem melakukan monitoring periodik\nCocok untuk pemantauan real-time sederhana\n\n\n#include &lt;WiFi.h&gt;\n#include &lt;WiFiClientSecure.h&gt;\n#include &lt;HTTPClient.h&gt;\n\n// ================= CONFIG =================\nconst char* WIFI_SSID     = \"Wokwi-GUEST\";\nconst char* WIFI_PASSWORD = \"\";\n\nconst char* API_URL   = \"https://iotweb.apache.web.id/api/save-data\";\nconst char* API_TOKEN = \"f62504400873ef044d68126c13423223\";\n\nconst char* DEVICE_ID = \"esp32-wokwi-02\";\n\nconst int TEMP_PIN = 34;\n// ==========================================\n\nvoid setup() {\n  Serial.begin(115200);\n\n  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);\n\n  Serial.print(\"Menghubungkan WiFi\");\n\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n\n  Serial.println();\n  Serial.println(\"WiFi Connected\");\n}\n\nfloat readTemperature() {\n  int raw = analogRead(TEMP_PIN);\n\n  float voltage = raw * 3.3 / 4095.0;\n  float tempC = (voltage - 0.5) * 100.0;\n\n  // fallback simulasi Wokwi\n  if (tempC &lt; -40 || tempC &gt; 85) {\n    tempC = 25 + random(0, 100) / 10.0;\n  }\n\n  return tempC;\n}\n\nvoid loop() {\n\n  float temp = readTemperature();\n\n  Serial.print(\"Suhu: \");\n  Serial.println(temp);\n\n  String json =\n    \"{\\\"temperature\\\":\" +\n    String(temp, 2) +\n    \",\\\"device_id\\\":\\\"\" +\n    DEVICE_ID +\n    \"\\\"}\";\n\n  WiFiClientSecure client;\n  client.setInsecure();\n\n  HTTPClient http;\n\n  http.begin(client, API_URL);\n\n  http.addHeader(\"Content-Type\", \"application/json\");\n  http.addHeader(\"Authorization\", String(\"Bearer \") + API_TOKEN);\n\n  int httpCode = http.POST(json);\n\n  Serial.print(\"HTTP Code: \");\n  Serial.println(httpCode);\n\n  if (httpCode &gt; 0) {\n    Serial.println(http.getString());\n  }\n\n  http.end();\n\n  delay(3000);\n}"
+  },
+  {
+    "objectID": "iotweb-mysql.html#contoh-output-serial-monitor",
+    "href": "iotweb-mysql.html#contoh-output-serial-monitor",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "WiFi Connected\nSuhu: 26.45\nHTTP Code: 201\nInterpretasi:\n\nWiFi berhasil terkoneksi\nTemperatur berhasil dibaca\nData berhasil diterima server"
+  },
+  {
+    "objectID": "iotweb-mysql.html#kelebihan-sistem",
+    "href": "iotweb-mysql.html#kelebihan-sistem",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Implementasi sederhana\nBiaya murah\nMudah dikembangkan\nMendukung monitoring real-time\nDapat diintegrasikan dengan dashboard web"
+  },
+  {
+    "objectID": "iotweb-mysql.html#kekurangan-sistem",
+    "href": "iotweb-mysql.html#kekurangan-sistem",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Bergantung pada koneksi internet\nBelum menggunakan enkripsi sertifikat valid\nBelum memiliki mekanisme retry kompleks\nBelum hemat daya"
+  },
+  {
+    "objectID": "iotweb-mysql.html#pengembangan-lanjutan",
+    "href": "iotweb-mysql.html#pengembangan-lanjutan",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "Beberapa pengembangan yang dapat dilakukan:\n\nIntegrasi LoRa\nDeep Sleep ESP32\nDashboard monitoring\nPenyimpanan cloud\nMQTT Protocol\nMulti sensor\nAlarm suhu otomatis"
+  },
+  {
+    "objectID": "iotweb-mysql.html#kesimpulan",
+    "href": "iotweb-mysql.html#kesimpulan",
+    "title": "Integrasi NodeMCU + Firebase + Sensor DHT11",
+    "section": "",
+    "text": "ESP32 dapat digunakan sebagai node IoT sederhana\nHTTP POST mempermudah integrasi dengan server web\nJSON menjadi format pertukaran data yang efektif\nSistem monitoring real-time dapat dibangun dengan biaya rendah"
+  }
+]
